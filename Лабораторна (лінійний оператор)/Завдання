@@ -1,0 +1,114 @@
+sing Microsoft.Win32.SafeHandles;
+using System;
+using System.Diagnostics.Eventing.Reader;
+
+class Program
+{
+    static void Main()
+    {
+        // Завдання 1
+        Console.Write("Перше число: ");
+        int number1 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Друге цисло: ");
+        int number2 = Convert.ToInt32(Console.ReadLine());
+
+        if ((number1 >= 1 && number1 <= 31) && (number2 >= 1 && number2 <= 12))
+        {
+            Console.WriteLine($"Число {number1} та {number2} можуть бути днем та мiсяцем.");
+        }
+        else if ((number2 >= 1 && number2 <= 31) && (number1 >= 1 && number1 <= 12))
+        {
+            Console.WriteLine($"Число {number1} та {number2} можуть бути днем та мiсяцем.");
+        }
+
+        else
+        {
+            Console.WriteLine($"Число {number1} та {number2} не можуть бути днем та мiсяцем.");
+        }
+
+        // Завдання 2
+        Console.Write("Дiйсне число: ");
+        double number = Convert.ToDouble(Console.ReadLine());
+        int firstDigit = (int)((number * 10) % 10);
+        int secondDigit = (int)((number * 100) % 10);
+        Console.WriteLine($"{firstDigit} + {secondDigit} = {firstDigit + secondDigit}");
+
+        // Завдання 3
+        Console.Write("Ведiть число(година): ");
+        int h = Convert.ToInt32(Console.ReadLine());
+        if (h >= 0 && h <= 5)
+        { 
+            Console.WriteLine("Доброї ночi!");
+        }
+        else if (h < 12)
+        {
+            Console.WriteLine("Доброго ранку!");
+        }
+        else if (h < 18) 
+        {
+            Console.WriteLine("Добрий день!");
+        }
+        else if(h < 24) 
+        {
+            Console.WriteLine("Добрий вечiр!");
+        }
+        else
+        {
+            Console.WriteLine("Неправiльно вели час");
+        }
+
+        // Завдання 4
+        Console.Write("Ведiть число 1: ");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Ведiть число 2: ");
+        int num2 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Ведiть число 3: ");
+        int num3 = Convert.ToInt32(Console.ReadLine());
+        int max = Math.Max(num1, Math.Max (num2, num3));
+        int min = Math.Min(num1, Math.Min(num2, num3));
+        Console.WriteLine($"Найбiльше число {max} \nНайменше число {min} ");
+
+        // Завдання 5
+        Console.Write("Ведiть довжину: ");
+        double len = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Ведiть ширину: ");
+        double wid = Convert.ToDouble(Console.ReadLine());
+        double area = len * wid;
+        Console.WriteLine(area);
+
+        // Завдання 6
+        Console.Write("Ведiть число: ");
+        int par = Convert.ToInt32(Console.ReadLine());
+        if (par % 2 == 0)
+        {
+            Console.WriteLine("Є парним");
+        }
+        else
+        {
+            Console.WriteLine("Не є парним");
+        }
+
+        // Завдання 7
+        Console.Write("Ведiть температуру в F: ");
+        int F = Convert.ToInt32(Console.ReadLine());
+        int C = (F - 32) * 5 / 9;
+        Console.WriteLine(C);
+
+        // Завдання 8
+        Console.Write("Введіть число n: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+        if (n >0)
+        {
+            int sum = 0;
+
+            for (int i = 1; i <= n; i++)
+            {
+                sum += i;
+            }
+
+            Console.WriteLine($"Сума перших {n} натуральних чисел: {sum}");
+        }
+    }
+}
+    
