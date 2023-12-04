@@ -1,0 +1,110 @@
+using System;
+
+namespace Оператор_циклу
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Завдяння 1:");
+            Console.WriteLine("Числа вiд 1 до 20: ");
+            for (int i = 1; i <= 20; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
+            Console.WriteLine("Завдяння 2:");
+            int sum = 0;
+            for (int i = 1; i <= 100; i++)
+            {
+                sum += i;
+            }
+            Console.WriteLine($"Виводе суму всiх чисел вiд 1 до 100: {sum}");
+
+            Console.WriteLine("Завдяння 3:");
+            Console.WriteLine("Ведiдь число: ");
+            int number = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Таблиця множення {number}:");
+            for (int i = 1; i <= 10; i++)
+            {
+                int result = number * i;
+                Console.WriteLine($"{number} * {i} = {result}");
+            }
+
+            Console.WriteLine("Завдяння 4:");
+            Console.WriteLine("Ведiдь число: ");
+            int num = int.Parse(Console.ReadLine());
+            int res = 1;
+            for (int i = 1; i <= num; i++)
+            {
+                res *= i;
+            }
+            Console.WriteLine($"Виводе факторіал числа { num}: {res}");
+
+            Console.WriteLine("Завдяння 5:");
+            int s = 0;
+            for (int i = 2; i <= 50; i++)
+            {
+                int d = 0;
+                for (int x = 2; x <= i / 2; x++)
+                {
+                    if (i % x == 0)
+                    {
+                        d++;
+                    }
+                }
+                if (d == 0)
+                {
+                    s += i;
+                }
+            }
+            Console.WriteLine($"Суму всiх простих чисел в межах вiд 1 до 50: {s}");
+
+            Console.WriteLine("Завдяння 6:");
+            Console.WriteLine("Ведiдь число: ");
+            int n = int.Parse(Console.ReadLine());
+            string binary = "";
+            while (n > 0)
+            {
+                int i = n % 2;
+                binary = i + binary;
+                n /= 2;
+            }
+            Console.WriteLine($"Переведе число в двiйкову систему  {binary}");
+
+            Console.WriteLine("Завдяння 7:");
+            Console.Write("Ведiдь число: ");
+            int givenNumber = int.Parse(Console.ReadLine());
+            int sm = 1, count = 2, previous = 0, current = 1;
+            while (current < givenNumber)
+            {
+                int next = previous + current;
+                if (next < givenNumber)
+                {
+                    sm += next;
+                    count++;
+                }
+                previous = current;
+                current = next;
+            }
+            Console.WriteLine($"Сума чисел Фiбоначчi,: {sm}");
+
+            Console.WriteLine("Завдяння 8:");
+            Console.Write("Ведiдь перше число: ");
+            int num1 = int.Parse(Console.ReadLine());
+            Console.Write("Ведiдь друге число: ");
+            int num2 = int.Parse(Console.ReadLine());
+            while (num2 != 0)
+            {
+                int temp = num2;
+                num2 = num1 % num2;
+                num1 = temp;
+            }
+            int gcd = num1;
+            Console.WriteLine($"Найбiльший спiльний дiльник (НСД) : {gcd}");
+        }
+    }
+}
