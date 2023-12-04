@@ -1,0 +1,113 @@
+using System;
+
+namespace Person
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person[] people = new Person[6];
+
+            for (int i = 0; i < people.Length; i++)
+            {
+                people[i] = new Person();
+                people[i].Input();
+            }
+            Console.WriteLine(" Iм'я i рік людини: ");
+            foreach (var person in people)
+            {
+                int age = person.Age();
+                Console.WriteLine($"{person.Name}: {(age < 16 ? "дуже молода" : age.ToString())} старша");
+            }
+            Console.WriteLine("Iнформацiя про людину: ");
+            foreach (var person in people)
+            {
+                person.Output();
+            }
+            Console.WriteLine("Люди з однаковими iменами: ");
+            for (int i = 0; i < people.Length; i++)
+            {
+                for (int j = i + 1; j < people.Length; j++)
+                {
+                    if (people[i] == people[j])
+                    {
+                        Console.WriteLine($"{people[i].Name}, {people[j].Name}");
+                    }
+                }
+            }
+        }
+    }
+
+    class Person
+    {
+        private string name;
+        private DateTime birthYear;
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public DateTime BirthYear
+        {
+            get { return birthYear; }
+        }
+
+        public Person()
+        {
+            name = "";
+            birthYear = DateTime.MinValue;
+        }
+
+        public Person(string name, DateTime birthYear)
+        {
+            this.name = name;
+            this.birthYear = birthYear;
+        }
+
+        public int Age()
+        {
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - birthYear.Year;
+            return age;
+        }
+
+        public void Input()
+        {
+            Console.WriteLine("Введiть ваше iм'я: ");
+            name = Console.ReadLine();
+
+            Console.WriteLine("Bвведiть рiк народження: ");
+            while (!DateTime.TryParseExact(Console.ReadLine(), "yyyy", null, System.Globalization.DateTimeStyles.None, out birthYear))
+            {
+                Console.WriteLine("Помилка. Введіть рік у форматі yyyy (наприклад, 2006): ");
+            }
+        }
+
+        public void ChangeName()
+        {
+            Console.WriteLine("Bведiть нове ім'я: ");
+            name = Console.ReadLine();
+        }
+
+        public override string ToString()
+        {
+            return $"Iм'я: {name}, рiк народження: {birthYear:yyyy}";
+        }
+
+        public void Output()
+        {
+            Console.WriteLine(ToString());
+        }
+
+        public static bool operator ==(Person person1, Person person2)
+        {
+            return person1.name == person2.name;
+        }
+
+        public static bool operator !=(Person person1, Person person2)
+        {
+            return person1.name != person2.name;
+        }
+    }
+}
