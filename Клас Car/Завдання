@@ -1,0 +1,96 @@
+using System;
+
+class Car
+{
+    public string Name { get; set; }
+    public string Color { get; set; }
+    public double Price { get; set; }
+
+    public Car()
+    {
+
+    }
+
+    public Car(string name, string color, double price)
+    {
+
+        Name = name;
+        Color = color;
+        Price = price;
+    }
+
+    public void Print()
+    {
+        Console.WriteLine($"Назва: {Name}, Колiр: {Color}, Цiна: {Price:C}");
+    }
+
+    // Метод для зміни ціни на x%
+    public void ChangePrice(double x)
+    {
+        Price -= Price * (x / 100);
+    }
+
+    // Метод для зміни кольору авто
+    public void ChangeColor(string newColor)
+    {
+        if (Color.ToLower() == "білий")
+        {
+            Color = newColor;
+        }
+        else
+        {
+            Console.WriteLine("Цей автомобiль не бiлий, колiр залишається незмiнним.");
+        }
+    }
+
+    // Метод, який повертає рядок з даними про авто з заміною літери "і" на "i"
+    public string PrintInfo()
+    {
+        // Використовуємо метод Replace для заміни літер
+        string replacedName = Name.Replace('і', 'i');
+        string replacedColor = Color.Replace('і', 'i');
+
+        // Повертаємо оновлений рядок
+        return $"Назва: {replacedName}, Колiр: {replacedColor}, Цiна: {Price:C},";
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Введення даних про 3 авто
+        Car car1 = new Car("Toyota", "білий", 25000);
+        Car car2 = new Car("Mersedes_benz", "Чорний", 80000);
+        Car car3 = new Car("BMW", "Синій", 35000);
+
+        // Зменшення ціни на 10% і виведення даних про авто
+        car1.ChangePrice(10);
+        car2.ChangePrice(10);
+        car3.ChangePrice(10);
+
+        Console.WriteLine("\nДанi про авто пiсля зменшення цiни на 10%:");
+        car1.Print();
+        car2.Print();
+        car3.Print();
+
+        // Введення нового коліру і пофарбування авто з білим коліром
+        Console.Write("\nВведiть новий колiр для бiлих авто: ");
+        string newColor = Console.ReadLine();
+
+        car1.ChangeColor(newColor);
+        car2.ChangeColor(newColor);
+        car3.ChangeColor(newColor);
+
+        Console.WriteLine("\nДанi про авто пiсля пофарбування:");
+        car1.Print();
+        car2.Print();
+        car3.Print();
+
+        // Виведення даних про авто з використанням PrintInfo
+        Console.WriteLine("\nДанi про авто зi змiною лiтери \"і\" на \"i\":");
+        Console.WriteLine(car1.PrintInfo());
+        Console.WriteLine(car2.PrintInfo());
+        Console.WriteLine(car3.PrintInfo());
+    }
+}
