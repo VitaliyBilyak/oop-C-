@@ -1,0 +1,125 @@
+using System;
+
+namespace методами
+{
+    internal class Program
+    {
+        static double PerformOperation(double operand1, double operand2, char operation)
+        {
+            double result = 0;
+
+            switch (operation)
+            {
+                case '+':
+                    result = operand1 + operand2;
+                    break;
+                case '-':
+                    result = operand1 - operand2;
+                    break;
+                case '*':
+                    result = operand1 * operand2;
+                    break;
+                case '/':
+                    if (operand2 != 0)
+                        result = operand1 / operand2;
+                    else
+                        Console.WriteLine("Ділення на нуль неможливе.");
+                    break;
+                default:
+                    Console.WriteLine("Невідома операція.");
+                    break;
+            }
+
+            return result;
+        }
+
+        // Перевірка на просте число
+        static bool IsPrime(int number)
+        {
+            if (number <= 1)
+                return false;
+
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        // Конвертація валют
+        static double ConvertCurrency(double amount, double exchangeRate)
+        {
+            return amount * exchangeRate;
+        }
+
+        // Пошук найменшого і найбільшого елементів
+        static void FindMinMax(int[] array, out int min, out int max)
+        {
+            min = array[0];
+            max = array[0];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] < min)
+                    min = array[i];
+
+                if (array[i] > max)
+                    max = array[i];
+            }
+        }
+
+        // Робота з рядками
+        static void CountVowelsAndConsonants(string str, out int vowels, out int consonants)
+        {
+            vowels = 0;
+            consonants = 0;
+
+            foreach (char ch in str.ToLower())
+            {
+                if (char.IsLetter(ch))
+                {
+                    if ("aeiou".Contains(ch))
+                        vowels++;
+                    else
+                        consonants++;
+                }
+            }
+        }
+
+        static void Main()
+        {
+            // Приклад використання калькулятора
+            double operand1 = 25;
+            double operand2 = 2;
+            char operation = '+';
+
+            double result = PerformOperation(operand1, operand2, operation);
+            Console.WriteLine($"{operand1} {operation} {operand2} = {result}");
+
+            // Приклад перевірки на просте число
+            int numberToCheck = 16;
+            bool isPrime = IsPrime(numberToCheck);
+            Console.WriteLine($"{numberToCheck} - просте число: {isPrime}");
+
+            // Приклад конвертації валют
+            double amountInUSD = 100;
+            double exchangeRateUSDToEUR = 0.80;
+            double amountInEUR = ConvertCurrency(amountInUSD, exchangeRateUSDToEUR);
+            Console.WriteLine($"{amountInUSD} USD = {amountInEUR} EUR");
+
+            // Приклад пошуку найменшого і найбільшого елементів
+            int[] numbers = { 2, -5, 7, 1, 2, 15, -1 };
+            int min, max;
+            FindMinMax(numbers, out min, out max);
+            Console.WriteLine($"Найменший елемент: {min}, Найбільший елемент: {max}");
+
+            // Приклад роботи з рядками
+            string inputString = "Hello, World!";
+            int vowelCount, consonantCount;
+            CountVowelsAndConsonants(inputString, out vowelCount, out consonantCount);
+            Console.WriteLine($"Голосних: {vowelCount}, Приголосних: {consonantCount}");
+        }
+    }
+}
